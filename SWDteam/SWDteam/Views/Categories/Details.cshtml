@@ -1,0 +1,40 @@
+﻿@model SWDteam.Models.Category
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.CategoryName</h1>
+<div style="display:ruby;flex-wrap:wrap;margin: 0 -1.6rem -3.2rem 0;">
+    <div style="display:block; margin: 0 1.6rem 1.6rem 0;">
+        <img src="~/Img/@Model.CategoryImage" style="width: 150px;border-radius:30%" alt="Avatar" />
+        <p class="text-muted">@Model.CategoryDescription </p>
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.CategoryId"><i class="bi bi-pencil-square"></i></a>
+            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.CategoryId"><i class="bi bi-trash3-fill"></i></a>
+        }
+    </div>
+    
+</div>
+
+<div style="margin:20px 10px 20px 10px;">
+    @if (Model.Departments != null)
+    {
+        <div style="display:ruby;flex-wrap:wrap;margin: 0 -1.6rem -3.2rem 0;">
+            @foreach (var item in Model.Departments)
+            {
+                <a asp-controller="Departments" asp-action="Details" asp-route-id="@item.DepartmentID">
+                    <div class="card text-white bg-primary mb-3" style="width:300px;height:200px;">
+                        <div class="card-header" style="color:aliceblue">@item.DepartmentName</div>
+                        <div class="card-body">
+                            <p class="card-text" style="color:aliceblue">@item.DepartmentDescription</p>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    }
+</div>
+

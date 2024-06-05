@@ -1,0 +1,72 @@
+﻿@model SWDteam.Models.Course
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add New</h1>
+
+<h4>Course</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CourseName" class="control-label"></label>
+                <input asp-for="CourseName" class="form-control" />
+                <span asp-validation-for="CourseName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseDescription" class="control-label"></label>
+                <textarea asp-for="CourseDescription" class="form-control"></textarea>
+                <span asp-validation-for="CourseDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseImage" class="control-label"></label>
+                <input asp-for="CourseImage" class="form-control" type="file" name="img_file" accept="image/*" />
+                <span asp-validation-for="CourseImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseVedio" class="control-label"></label>
+                <input asp-for="CourseVedio" class="form-control" type="file" name="vedio_file" accept="video/*"/>
+                <span asp-validation-for="CourseVedio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseDuration" class="control-label"></label>
+                <input asp-for="CourseDuration" class="form-control" />
+                <span asp-validation-for="CourseDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoursePrice" class="control-label"></label>
+                <input asp-for="CoursePrice" class="form-control" />
+                <span asp-validation-for="CoursePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Coursedate" class="control-label"></label>
+                <input asp-for="Coursedate" class="form-control" />
+                <span asp-validation-for="Coursedate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentID" class="control-label"></label>
+                <select asp-for="DepartmentID" class ="form-control" asp-items="ViewBag.DepartmentID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstructorID" class="control-label"></label>
+                <select asp-for="InstructorID" class ="form-control" asp-items="ViewBag.InstructorID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

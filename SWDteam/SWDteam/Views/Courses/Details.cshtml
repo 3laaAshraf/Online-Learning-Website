@@ -1,0 +1,64 @@
+﻿@model SWDteam.Models.Course
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.CourseName</h1>
+<img src="~/Img/@Model.CourseImage" style="width: 150px;border-radius:30%" alt="Avatar" />
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseDescription)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseDescription)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseDuration)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseDuration)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CoursePrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CoursePrice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Coursedate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Coursedate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Department.DepartmentName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Instructor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Instructor.InstructorName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <video width="320" height="240" controls>
+        <source src="~/Vedio/@Model.CourseVedio" type="video/mp4">
+    </video>
+</div>
+<div>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class = "btn btn-primary" asp-action="Edit" asp-route-id="@Model?.CourseId">Edit</a>
+    }
+    |
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>
